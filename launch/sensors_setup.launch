@@ -4,9 +4,12 @@
     <include ns="camera" file="$(find realsense2_camera)/launch/rs_camera.launch">
     	<arg name="camera"             value="stereo_camera" />
     	<arg name="serial_no"          value="053422251600" />
-    	<!-- <arg name="filters"            value="pointcloud" /> -->
     	<arg name="device_type"        value="d455" />
         <arg name="align_depth"         default="true"/>
+		<arg name="initial_reset"      value="true"/>
+		<arg name="enable_depth" value="true" />
+		
+	    <arg name="output" value="log" /> 
     </include> 
     
     <node name="depthscan_camera" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan">
@@ -18,36 +21,6 @@
    	    <param name="scan_heigth" value="10" />
    </node>
 
-    <!--<include  ns="camera" file="$(find realsense2_camera)/launch/rs_camera.launch">
-     <arg name="serial_no"         value="053422251600"/>
-      <arg name="depth_width"       value="640"/>
-      <arg name="depth_height"      value="480"/>
-      <arg name="color_width"       value="640"/>
-      <arg name="color_height"      value="480"/>
-      <arg name="enable_depth"      value="true"/>
-      <arg name="enable_color"      value="true"/>
-      <arg name="enable_infra1"     value="false"/>
-      <arg name="enable_infra2"     value="false"/>
-      <arg name="enable_fisheye"    value="false"/>
-      <arg name="enable_gyro"       value="true"/>
-      <arg name="enable_accel"      value="true"/>
-      <arg name="enable_pointcloud" value="true"/>
-      <arg name="enable_sync"       value="true"/>
-        <arg name="align_depth"     default="true"/>
- <arg name="depth_fps"           default="15"/>
-  <arg name="infra_fps"           default="15"/>
-  <arg name="color_fps"           default="15"/>
-    </include>-->
-
-   <!-- 3D Real sense lidar -->
-   <!-- <include ns="lidar" file="$(find realsense2_camera)/launch/rs_camera.launch">
-   	<arg name="camera"             value="lidar_camera" />
-   	<arg name="serial_no"          value="f1061932" />
-   	<arg name="enable_gyro"        value="true"/>
-   	<arg name="enable_accel"       value="true"/>
-    <arg name="device_type"        value="l515" />
-     <arg name="unite_imu_method"   default="linear_interpolation"/> 
-   </include>   -->
     <include ns="lidar" file="$(find realsense2_camera)/launch/rs_camera.launch">
         <arg name="camera"             value="lidar_camera" />
         <arg name="serial_no"          value="f1061932" /> 
@@ -55,6 +28,8 @@
    	    <arg name="enable_accel"       value="true"/>
    	    <arg name="unite_imu_method"   value="linear_interpolation"/>
    	    <arg name="initial_reset"      value="true"/>
+		<arg name="output" value="log" /> 
+
    </include>   
    
    <node name="depthscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan">
@@ -64,7 +39,7 @@
    	
    	<param name="output_frame_id" type="str" value="lidar_camera_depth_frame"/>
    	<param name="scan_heigth" value="10" />
-   </node>
+   </node> 
    
 
    <!--Hokuyo left -->
@@ -105,8 +80,6 @@
     </node>
  
 
-    <include file="$(find wheelchair_iaslab_odometry)/launch/odometry.launch"/>
-     
     <!-- Filters -->
     <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="filter_ho">
     	<remap from="/scan" to="/scan_right_unfiltered" />
@@ -124,7 +97,7 @@
         <remap from="/scan" to="/lidar_camera_unfiltered" />
         <remap from="/scan_filtered" to="/lidar_camera" /> 
         <rosparam command="load" file="$(find wheelchair_iaslab_sensors)/config/shadow_filter.yaml" />
-    </node>
+    </node> 
   
   
 </launch>
