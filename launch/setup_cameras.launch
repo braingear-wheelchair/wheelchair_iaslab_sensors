@@ -40,7 +40,7 @@
     </include> 
   </group>
 
-  <!-- Cemera rigth -->
+  <!-- Cemera rigth 
   <group ns="$(arg camera2)">
     <include ns="camera" file="$(find wheelchair_iaslab_sensors)/launch/custom_rs_rgbd.launch"> 
       <arg name="enable_pointcloud"   value="$(arg enable_pointcloud)"/>
@@ -58,8 +58,10 @@
       <arg name="gyro_fps"            default="$(arg camera_fps)"/>
       <arg name="accel_fps"           default="$(arg camera_fps)"/>
 
-      <!-- <remap from="/$(arg camera2)/camera/camera/depth/color/points" to="$(arg cloud_out2)"/> -->
     </include>
-  </group>
+  </group> -->
+
+        <!-- <remap from="/$(arg camera2)/camera/camera/depth/color/points" to="$(arg cloud_out2)"/> -->
+
 
 </launch>
