@@ -9,7 +9,11 @@ Panels:
         - /AngularRepellors1
         - /PotentialComponent1
       Splitter Ratio: 0.5
+<<<<<<< HEAD
+    Tree Height: 827
+=======
     Tree Height: 719
+>>>>>>> refs/remotes/origin/main
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
