@@ -12,7 +12,7 @@
     <param name="calibrate_time"   value="true" />
     <param name="angle_max"        value="$(arg angle_max)"  />
     <param name="angle_min"        value="-$(arg angle_min)" />
-    <remap from="scan"             to="scan_left_unfiltered" />
+    <remap from="scan"             to="scan_left" />
   </node>
 
   <!-- Hokuyo right -->
@@ -23,10 +23,10 @@
     <param name="calibrate_time"   value="true" />
     <param name="angle_min"        value="-$(arg angle_max)"  />
     <param name="angle_max"        value="$(arg angle_min)"   />
-    <remap from="scan"             to="scan_right_unfiltered" />
+    <remap from="scan"             to="scan_right" />
   </node>
  
-  <!-- Filters -->
+  <!-- Filters
   <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="filter_ho_r">
     <remap from="/scan"          to="/scan_right_unfiltered" />
     <remap from="/scan_filtered" to="/scan_right" /> 
@@ -37,6 +37,6 @@
     <remap from="/scan" to="/scan_left_unfiltered" />
     <remap from="/scan_filtered" to="/scan_left" /> 
     <rosparam command="load" file="$(find wheelchair_iaslab_sensors)/config/shadow_filter.yaml" />
-  </node>
+  </node> -->
 </launch>
 
