@@ -4,11 +4,12 @@
   <arg name="manager"             default="realsense2_camera_manager"/>
   <arg name="target_frame"        default="wcias_base_link" />
   <arg name="cloud_out"           default="/camera/cloud_concatenated" />
+
   <arg name="tf_prefix_left"      default="camera_left"/>
   <arg name="tf_prefix_right"     default="camera_right"/>
   <arg name="clip_distance"       default="3"/>
   <arg name="external_manager"    default="false"/>
-  <arg name="enable_pointcloud"   default="false"/>
+  <arg name="enable_pointcloud"   default="true"/>
   <arg name="hz"                  default="30"/>
   <arg name="camera1"             default="opt_01"/>
   <arg name="camera2"             default="opt_02"/>
@@ -25,7 +26,7 @@
       <arg name="clip_distance"       value="$(arg clip_distance)"/>
       <arg name="manager"             value="$(arg manager)"/>
       <arg name="external_manager"    value="$(arg external_manager)"/>
-      <arg name="ordered_pc"          value="true" />
+      <arg name="ordered_pc"          value="false" />
       <arg name="serial_no"           value="243522074384"/> <!-- 053422251600 -->
       <arg name="tf_prefix"           value="$(arg tf_prefix_left)"/>
       
@@ -33,11 +34,24 @@
       <arg name="depth_fps"           default="$(arg camera_fps)"/>
       <arg name="infra_fps"           default="$(arg camera_fps)"/>
       <arg name="color_fps"           default="$(arg camera_fps)"/>
-      <arg name="gyro_fps"            default="$(arg camera_fps)"/>
-      <arg name="accel_fps"           default="$(arg camera_fps)"/>
+      <!-- <arg name="gyro_fps"            default="$(arg camera_fps)"/>
+      <arg name="accel_fps"           default="$(arg camera_fps)"/>-->
+      <arg name="align_depth"         value="true"/>
+
+      <arg name="enable_gyro"         value="true"/>
+      <arg name="enable_accel"        value="true"/>
+
+      <arg name="unite_imu_method" value="linear_interpolation"/>
+      
+      <arg name="tf_publish_rate"     default="100"/>
 
     <!-- <remap from="/$(arg camera1)/camera/camera/depth/color/points" to="$(arg cloud_out1)"/> --> 
     </include> 
+
+     <rosparam param="disable_pub_plugins">
+      - 'image_transport/compressedDepth'
+      - 'image_transport/theora'
+    </rosparam>
   </group>
 
   <!-- Cemera rigth 
