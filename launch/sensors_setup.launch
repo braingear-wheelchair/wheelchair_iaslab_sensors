@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
     <include file="$(find wheelchair_iaslab_sensors)/launch/setup_hokuyos.launch"/> 
-    <include file="$(find wheelchair_iaslab_sensors)/launch/test_vo.launch"/> 
-    <include file="$(find wheelchair_iaslab_sensors)/launch/setup_cameras.launch"/>
+    <!-- <include file="$(find wheelchair_iaslab_sensors)/launch/test_vo.launch"/> -->
+    <!-- <include file="$(find wheelchair_iaslab_sensors)/launch/setup_cameras.launch"/> -->
 </launch>

@@ -88,6 +88,7 @@ Processing enabled by this node:
   <arg name="tf_publish_rate"     default="0"/> <!-- 0 - static transform -->
 
   <arg name="clip_distance"       default="-1"/>
+  <arg name="unite_imu_method"    default="none"/> 
   <arg name="ordered_pc"          default="false"/>
 
   <!-- rgbd_launch specific arguments -->
@@ -163,6 +164,8 @@ Processing enabled by this node:
 
       <arg name="publish_tf"               value="$(arg publish_tf)"/>
       <arg name="tf_publish_rate"          value="$(arg tf_publish_rate)"/>
+
+      <arg name="unite_imu_method"         value="$(arg unite_imu_method)"/>
 
       <arg name="clip_distance"            value="$(arg clip_distance)"/>
       <arg name="ordered_pc"               value="$(arg ordered_pc)"/>
